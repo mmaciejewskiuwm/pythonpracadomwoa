@@ -1,0 +1,116 @@
+# zad1
+lista = [x * 2 for x in range(0, 31)]
+plik = open('dane.txt', 'w+')
+plik.writelines(str(lista))
+plik.close()
+
+# zad2
+plik = open('dane.txt', 'r')
+print(plik.readlines())
+plik.close()
+
+# zad3
+with open('dane.txt', 'a+') as plik:
+    for x in range(0, 5):
+        plik.writelines('nowa linia nr: ' + str(x))
+plik = open('dane.txt', 'r')
+print(plik.readlines())
+plik.close()
+
+
+# zad 4
+
+
+class NaZakupy:
+    def __init__(self, nazwa, ilosc, jednostka, cena):
+        self.nazwa = nazwa
+        self.ilosc = ilosc
+        self.jednostka = jednostka
+        self.cena = cena
+
+    def wyswietl_produkt(self):
+        print(self.nazwa + ' ' + self.ilosc + ' ' + self.jednostka + ' ' + self.cena)
+
+    def ile_produktu(self):
+        print(self.ilosc + ' ' + self.jednostka)
+
+    def ile_kosztuje(self):
+        print((self.ilosc * self.cena))
+
+
+# zad 5
+
+
+class Ciag:
+    def __init__(self, a1, r, n):
+        self.a1 = a1
+        self.r = r
+        self.n = n
+        self.ciag = [a1 + r * x for x in range(0, n)]
+
+    def pobierz_element(self, index):
+        if index > self.n - 1 or index < 0:
+            print('Wrong index')
+            return -1
+        return self.ciag[index]
+
+    def pobierz_parametry(self, a1, r, n):
+        self.a1 = a1
+        self.r = r
+        self.n = n
+        self.ciag = [a1 + r * x for x in range(0, n)]
+
+    def policz_sume(self):
+        suma = 0
+        for x in range(0, self.n):
+            suma += self.ciag[x]
+        return suma
+
+    def ile_elementuw(self):
+        return self.n
+
+
+nowyciag = Ciag(0, 1, 10)
+print(nowyciag.ciag)
+print(nowyciag.pobierz_element(9))
+nowyciag.pobierz_parametry(0, 2, 10)
+print(nowyciag.ciag)
+print(nowyciag.policz_sume())
+print(nowyciag.ile_elementuw())
+
+
+# zad 6
+
+
+class Robaczek:
+    def __init__(self, x, y, krok):
+        self.x = x
+        self.y = y
+        self.krok = krok
+
+    def idz_n(self, ile):
+        self.y += ile * self.krok
+
+    def idz_e(self, ile):
+        self.x += ile * self.krok
+
+    def idz_s(self, ile):
+        self.y -= ile * self.krok
+
+    def idz_w(self, ile):
+        self.x -= ile * self.krok
+
+    def gdzie_jestes(self):
+        print('x: ' + str(self.x) + ', y: ' + str(self.y))
+
+
+robalbrzydki = Robaczek(5, 10, 1)
+robalbrzydki.gdzie_jestes()
+robalbrzydki.idz_n(5)
+robalbrzydki.gdzie_jestes()
+robalbrzydki.idz_e(3)
+robalbrzydki.gdzie_jestes()
+robalbrzydki.idz_s(6)
+robalbrzydki.gdzie_jestes()
+robalbrzydki.idz_w(1)
+robalbrzydki.gdzie_jestes()
